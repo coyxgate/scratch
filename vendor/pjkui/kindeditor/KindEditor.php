@@ -43,8 +43,8 @@ class KindEditor extends InputWidget {
     public function init() {
         $this->id = $this->hasModel() ? Html::getInputId($this->model, $this->attribute) : $this->id;
         $this->_options = [
-            'fileManagerJson' => Url::to(['Kupload', 'action' => 'fileManagerJson']),
-            'uploadJson' => Url::to(['Kupload', 'action' => 'uploadJson']),
+            'fileManagerJson' => Url::to(['upload', 'action' => 'fileManagerJson']),
+            'uploadJson' => Url::to(['upload', 'action' => 'uploadJson']),
             'width' => '100%',
             'height' => '400',
                 //'langType' => (strtolower(Yii::$app->language) == 'en-us') ? 'en' : 'zh_cn',//kindeditor支持一下语言：en,zh_CN,zh_TW,ko,ar
@@ -115,11 +115,11 @@ class KindEditor extends InputWidget {
         KindEditorAsset::register($this->view);
         $clientOptions = Json::encode($this->clientOptions);
 
-        $fileManagerJson = Url::to(['Kupload', 'action' => 'fileManagerJson']);
-        $uploadJson = Url::to(['Kupload', 'action' => 'uploadJson']);
+        $fileManagerJson = Url::to(['upload', 'action' => 'fileManagerJson']);
+        $uploadJson = Url::to(['upload', 'action' => 'uploadJson']);
         switch ($this->editorType) {
             case 'uploadButton':
-                $url = Url::to(['Kupload', 'action' => 'uploadJson', 'dir' => 'file']);
+                $url = Url::to(['upload', 'action' => 'uploadJson', 'dir' => 'file']);
 
                 $script = <<<EOT
                              KindEditor.ready(function(K) {

@@ -37,7 +37,7 @@ function isRandom($model)
                 'method' => 'post',
             ],
         ]) ?>
-    </p>
+        </p>
 
     <?= DetailView::widget([
         'model' => $model,

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\TblCampaignsSearch */
@@ -54,7 +55,32 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'is_launched',
             // 'is_deleted',
             // 'create_at',
-
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'controller' => 'price',
+                'buttons' => [
+                    // 自定义按钮
+                    'list' => function ($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', '奖项列表'),
+                            'aria-label' => Yii::t('yii', '奖项列表'),
+                            'data-pjax' => '0',
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-list"></span>', Url::toRoute(['price/index', 'campaign_id' => $model->id]), $options);
+                    },
+                    'add' => function ($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', '添加奖项'),
+                            'aria-label' => Yii::t('yii', '添加奖项'),
+                            'data-pjax' => '0',
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-plus"></span>', Url::toRoute(['price/create', 'campaign_id' => $model->id]), $options);
+                    },
+                ],
+                'template' => '{list} {add}',
+                'header' => '奖项操作',
+                'headerOptions'=>array('width'=>'40px'),
+            ],
             [
                 'class' => 'yii\grid\ActionColumn',
                 'controller' => 'campaigns',
@@ -68,9 +94,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         ];
                         return Html::a('<span class="glyphicon glyphicon-play"></span>', $url, $options);
                     },
+                    'add' => function ($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', '添加奖项'),
+                            'aria-label' => Yii::t('yii', '添加奖项'),
+                            'data-pjax' => '0',
+                        ];
+                        return Html::a('<span class="glyphicon glyphicon-plus"></span>', Url::toRoute(['price/create', 'campaign_id' => $model->id]), $options);
+                    },
                 ],
                 'template' => '{launch} {view} {update} {delete}',
-                'header' => '操作',
+                'header' => '活动操作',
                 'headerOptions'=>array('width'=>'90px'),
             ],
 

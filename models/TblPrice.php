@@ -19,6 +19,7 @@ use Yii;
  */
 class TblPrice extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -47,14 +48,19 @@ class TblPrice extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'campaign_id' => 'Campaign ID',
+            'campaign_id' => '刮刮卡活动',
             'name' => '奖项名',
-            'num' => 'Num',
-            'pic' => 'Pic',
-            'odds' => 'Odds',
-            'nth' => 'Nth',
-            'is_deleted' => 'Is Deleted',
-            'create_at' => 'Create At',
+            'num' => '数量',
+            'pic' => '奖品图片',
+            'odds' => '获奖概率',
+            'nth' => '第N位中奖',
+            'is_deleted' => '是否已删除',
+            'create_at' => '新建时间',
         ];
+    }
+
+    public function getCampaign()
+    {
+        return $this->hasOne(TblCampaigns::className(), ['id' => 'campaign_id']);
     }
 }

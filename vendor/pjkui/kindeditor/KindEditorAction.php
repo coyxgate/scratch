@@ -44,8 +44,8 @@ class KindEditorAction extends Action {
         //默认设置
 
        // $this->php_path =  dirname(__FILE__) . '/';
-        $this->php_path =  $_SERVER['DOCUMENT_ROOT'] . '/';
-        $this->php_url =  '/';
+        $this->php_path =  $_SERVER['DOCUMENT_ROOT'] . '/scratch/web/';
+        $this->php_url =  '/scratch/web/';
 //根目录路径，可以指定绝对路径，比如 /var/www/attached/
         $this->root_path = $this->php_path . 'upload/';
 //根目录URL，可以指定绝对路径，比如 http://www.yoursite.com/attached/

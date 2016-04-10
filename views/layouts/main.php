@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'XGATE WeChat Scratch And Win',
+        'brandLabel' => 'XGATE微信刮刮卡活动管理平台',
         'brandUrl' => Url::to(['default/index']),
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,7 +37,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => '主 页', 'url' => ['/scratch/default/index']],
+            ['label' => '游戏页面', 'url' => ['/scratch/default/index']],
             ['label' => '刮刮卡列表', 'url' => ['/scratch/campaigns/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => '登入', 'url' => ['/site/login']]
@@ -59,7 +59,7 @@ AppAsset::register($this);
     <div class="container">
         <?= Breadcrumbs::widget([
             'homeLink'=>[
-                'label' => '主 页',
+                'label' => '游戏页面',
                 'url' => Url::toRoute('default/index')
             ],
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],

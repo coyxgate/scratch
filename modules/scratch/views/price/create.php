@@ -6,16 +6,33 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\TblPrice */
 
-$this->title = 'Create Tbl Price';
-$this->params['breadcrumbs'][] = ['label' => 'Tbl Prices', 'url' => ['index']];
+$this->title = '添加新奖项';
+
+if( isset($campaign) ){
+    $this->params['breadcrumbs'][] = ['label' => $campaign->name . ' 奖项列表',
+        'url' => ['index', 'campaign_id'=>$campaign->id]];
+} else {
+    $this->params['breadcrumbs'][] = ['label' => '奖项列表',
+        'url' => ['index']];
+}
+
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="tbl-price-create">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php
+        if( isset($campaign) ){
+            $model->campaign_id = $campaign->id;
+            echo $this->render('_form', [
+                'model' => $model,
+                'campaign' => $campaign,
+            ]);
+        } else {
+            echo $this->render('_form', [
+                'model' => $model,
+            ]);
+        }
+    ?>
 
 </div>

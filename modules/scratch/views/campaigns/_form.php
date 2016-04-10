@@ -2,8 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\jui\DatePicker;
 use janisto\timepicker\TimePicker;
+use pjkui\kindeditor\KindEditor;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\TblCampaigns */
@@ -50,7 +50,8 @@ use janisto\timepicker\TimePicker;
         ]
     ]) ?>
 
-    <?= $form->field($model, 'hints')->textarea(['rows'=>5]) ?>
+    <?= $form->field($model, 'hints')->widget('pjkui\kindeditor\Kindeditor',
+        ['clientOptions'=>['allowFileManager'=>'true','allowUpload'=>'true']]) ?>
 
     <?= $form->field($model, 'duplicate_reply')->textInput(['maxlength' => true]) ?>
 
