@@ -18,4 +18,13 @@ class DefaultController extends Controller
         $this->layout='scratch';
         return $this->render('index');
     }
+
+    /**
+     * Renders the admin view for the module
+     * @return string
+     */
+    public function actionAdmin()
+    {
+        return $this->render('admin');
+    }
 }

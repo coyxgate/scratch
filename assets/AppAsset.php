@@ -23,7 +23,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/alert.js',
-        'js/jquery.js',
+        //'js/jquery.js',
         'js/wScratchPad.js',
     ];
     public $depends = [

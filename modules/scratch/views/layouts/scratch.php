@@ -11,7 +11,11 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -28,6 +32,12 @@ AppAsset::register($this);
 
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
+        <script type="text/javascript">
+            $('#myTabs a').click(function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            })
+        </script>
         <script type="text/javascript">
             function loading(canvas, options) {
                 this.canvas = canvas;
@@ -95,10 +105,49 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
 
     <div class="wrap">
+        <?php
+        NavBar::begin([
+            'brandLabel' => 'XGATE WeChat Scratch And Win',
+            'brandUrl' => Url::to(['default/index']),
+            'options' => [
+                'class' => 'navbar-inverse navbar-fixed-top',
+            ],
+        ]);
+        echo Nav::widget([
+            'options' => ['class' => 'navbar-nav navbar-right'],
+            'items' => [
+                ['label' => '主 页', 'url' => ['/scratch/default/index']],
+                ['label' => '刮刮卡列表', 'url' => ['/scratch/campaigns/index']],
+                Yii::$app->user->isGuest ? (
+                ['label' => '登入', 'url' => ['/site/login']]
+                ) : (
+                    '<li>'
+                    . Html::beginForm(['/site/logout'], 'post')
+                    . Html::submitButton(
+                        '登出 (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link']
+                    )
+                    . Html::endForm()
+                    . '</li>'
+                )
+            ],
+        ]);
+        NavBar::end();
+        ?>
+
         <div class="container">
+            <?= Breadcrumbs::widget([
+                'homeLink'=>[
+                    'label' => '主 页',
+                    'url' => Url::toRoute('default/index')
+                ],
+                'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
             <?= $content ?>
         </div>
     </div>
+
+
 
 
     <footer class="footer">
@@ -128,19 +177,19 @@ AppAsset::register($this);
                     if (num == 2) {
                         //一等奖机率10% 二等奖20% 三等奖30% 幸运奖40%
                         var randNum = Math.round(Math.random()*99+1)
-                        if(randNum>=1 && randNum<=10){
+                        if(randNum>=1 && randNum<=30){
                             var award = "一等奖";
                             zjl = true;
                         }
-                        if(randNum>=11 && randNum<=30){
+                        if(randNum>=31 && randNum<=60){
                             var award = "二等奖";
                             zjl = true;
                         }
-                        if(randNum>=31 && randNum<=60){
+                        if(randNum>=61 && randNum<=90){
                             var award = "三等奖";
                             zjl = true;
                         }
-                        if(randNum>=61 && randNum<=100){
+                        if(randNum>=91 && randNum<=100){
                             var award = "谢谢参与";
                         }
                         document.getElementById('prize').innerHTML = award;
